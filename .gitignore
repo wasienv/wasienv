@@ -1,4 +1,4 @@
-sdks/wasi-*
 *.egg-info/
 .vscode
 /dist
+*.pyc
