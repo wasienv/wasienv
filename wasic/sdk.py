@@ -7,8 +7,12 @@ import requests
 import tarfile
 from tools import logger
 
-WASIC_DIR    = os.path.dirname(os.path.dirname(__file__))
-WASI_SDKS_DIR = os.path.join(WASIC_DIR, "sdks")
+# Where the python packages live
+PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))
+
+# Where the WASIc storage lives
+WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasic-storage")
+WASI_SDKS_DIR = os.path.join(WASI_STORAGE_DIR, "sdks")
 
 CURRENT_SDK = "7"
 
