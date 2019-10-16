@@ -38,8 +38,6 @@ When installing `wasic`, the following commands will be automatically avialable:
 
 This is the compiler toolchain. You have two commands available:
 
-#### `c-sdk SDK_NAME`
-
 For installing a SDK (`wasic install-sdk`):
 
 ```bash
