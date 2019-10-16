@@ -38,17 +38,15 @@ When installing `wasic`, the following commands will be automatically avialable:
 
 This is the compiler toolchain. You have two commands available:
 
-#### `wasic install-sdk SDK_NAME`
+#### `c-sdk SDK_NAME`
 
-For installing a SDK:
+For installing a SDK (`wasic install-sdk`):
 
 ```bash
 wasic install-sdk 7
 ```
 
-#### `wasic default-sdk SDK_NAME`
-
-For setting a SDK as the default.
+For setting a SDK as the default (`wasic default-sdk`):
 
 ```bash
 wasic default-sdk 7
