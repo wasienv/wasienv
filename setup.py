@@ -2,9 +2,11 @@ from setuptools import setup
 
 setup(
     name='wasic',
-    version='0.1.3',
+    description="WASIc is a C/C++ Compiler toolchain for WASI",
+    version='0.1.4',
     packages=['wasic'],
     include_package_data=True,
+    license="MIT",
     entry_points={'console_scripts': [
         'wasiar = wasic.wasiar:run',
         'wasic = wasic.wasic:run',

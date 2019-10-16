@@ -91,3 +91,32 @@ It executes a given WebAssembly file with a standalone WebAssembly runtime.
 ```bash
 wasirun myfile.wasm
 ```
+
+# How WASIc compares to ...?
+
+### Emscripten
+
+[Emscripten](https://emscripten.org/) is a great toolchain that let's you compile your C/C++ projects to WebAssembly so you can use them in the web easily.
+
+However, Emscripten has a **non-stable ABI** (beacuse they need constant and fast iteration).
+This makes it a bit challening for standalone-runtimes to continually adapt.
+Because of that, adopting the WASI ABI is a much easier path for standalone sever-side Wasm runtimes.
+
+Right now Emscripten is moving towards WASI adoption. However is not yet possible to create WASI-only Wasm files since they are doing a gradual approach.
+Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
+
+WASIc learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten is without any doubt, one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
+
+### WASI-libc
+
+WASI-libc is the "frontend ABI" for WASI. By itself, it only provide header files and implementations that make C compilers adopt WASI very easily via the `--sysroot` flag.
+
+### WASI-SDK
+
+WASI-SDK is the union between `WASI-libc` and the compiler binaries `clang`, `wasm-ld`, ...
+
+WASIc is using WASI-SDK under the hood to compile to WebAssembly, however it differs from it in two major ways:
+* WASIc is designed to work with **multiple SDKs** versions at the same time
+* WASIc is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
+
+We can see of WASIc as the merge between Emscripten and the WASI-SDK.
