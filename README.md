@@ -114,7 +114,7 @@ This makes it a bit challening for standalone-runtimes to continually adapt.
 Because of that, adopting the WASI ABI is a much easier path for standalone sever-side Wasm runtimes.
 
 Right now Emscripten is moving towards WASI adoption. However is not yet possible to create WASI-only Wasm files since they are doing a gradual approach.
-Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
+Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
 
 WASIc learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten is without any doubt, one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
 
