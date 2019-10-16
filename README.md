@@ -21,7 +21,7 @@ If you want to compile a file to a WebAssembly WASI:
 # This command will generate:
 #  • A executable: ./example
 #  • A WebAssembly file: ./example.wasm
-wasicc example.c -o example
+wasicc examples/example.c -o example
 
 # If you are using configure
 wasiconfigure ./configure
@@ -53,12 +53,12 @@ wasic default-sdk 7
 ### `wasicc`
 
 It's a wrapper on top of `clang`, with additions for the stubs, sysroot and target.
-It also detects autoexecutables in the output and wraps to execute them with a WebAssembly WASI runtime.
+It also detects autoexecutables in the output and wraps to execute them with a WebAssembly WASI runtime via `wasirun`.
 
 ### `wasic++`
 
 It's a wrapper on top of `clang++`, with additions for the stubs, sysroot and target.
-It also detects autoexecutables in the output and wraps to execute them with a WebAssembly WASI runtime.
+It also detects autoexecutables in the output and wraps to execute them with a WebAssembly WASI runtime via `wasirun`.
 
 ### `wasiconfigure`
 
@@ -73,7 +73,7 @@ wasiconfigure ./configure
 ### `wasimake`
 
 It's a helper that adds the WASIc environment vars (`CC`, `CXX`, `RUNLIB`, ...) for the make (`make` or `cmake`).
-s
+
 Example:
 
 ```bash
