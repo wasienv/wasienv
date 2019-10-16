@@ -88,7 +88,7 @@ def try_to_wrap_executable(exe_name):
     new_target_path = "{}.wasm".format(target_path)
     shutil.copy(target_path, new_target_path)
     with open(target_path,'w') as f:
-        f.write("#!/bin/bash\nwasirun {} -- \"$@\"\n".format(new_target_path))
+        f.write("#!/bin/bash\nwasirun {} \"$@\"\n".format(new_target_path))
 
 
     os.chmod(new_target_path, st.st_mode)

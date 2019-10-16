@@ -26,9 +26,9 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
 # We set the cross compiler using the WebAssembly VM
 if (NOT DEFINED CMAKE_CROSSCOMPILING_EMULATOR)
-  find_program(WASMER_EXECUTABLE NAMES wasmer)
-  if(WASMER_EXECUTABLE)
-    set(CMAKE_CROSSCOMPILING_EMULATOR "${WASMER_EXECUTABLE} run --dir=. --enable-all -- " CACHE FILEPATH "Path to the emulator for the target system.")
+  find_program(WASIRUN_EXECUTABLE NAMES wasirun)
+  if(WASIRUN_EXECUTABLE)
+    set(CMAKE_CROSSCOMPILING_EMULATOR "wasirun" CACHE FILEPATH "Path to the emulator for the target system.")
   endif()
 endif()
 if(CMAKE_CROSSCOMPILING_EMULATOR)
