@@ -2,3 +2,4 @@
 .vscode
 /dist
 *.pyc
+/.DS_Store

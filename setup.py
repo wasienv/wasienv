@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='wasic',
-    version='0.1.2',
+    version='0.1.3',
     packages=['wasic'],
     include_package_data=True,
     entry_points={'console_scripts': [
