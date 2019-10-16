@@ -13,6 +13,7 @@ setup(
         'wasiconfigure = wasic.wasiconfigure:run',
         'wasild = wasic.wasild:run',
         'wasimake = wasic.wasimake:run',
+        'wasirun = wasic.wasirun:run',
         'wasinm = wasic.wasinm:run',
         'wasiranlib = wasic.wasiranlib:run',
     ]},

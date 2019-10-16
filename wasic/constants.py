@@ -27,6 +27,7 @@ WASI_LD      = "wasild"
 WASI_AR      = "wasiar"
 WASI_NM      = "wasinm"
 WASI_RANLIB  = "wasiranlib"
+WASI_RUN  = "wasirun"
 
 WASI_CMAKE   = os.path.abspath(os.path.join(WASIC_DIR, "wasic.cmake"))
 
