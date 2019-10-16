@@ -92,7 +92,18 @@ It executes a given WebAssembly file with a standalone WebAssembly runtime.
 wasirun myfile.wasm
 ```
 
-# How WASIc compares to ...?
+## Contributing
+
+After cloning this repo, ensure dependencies are installed by running:
+
+```bash
+python setup.py develop
+```
+
+After that, all the commands will be available on your shell and you should be able to start seeing the changes directly without re-installing wasic.
+
+
+## How WASIc compares to ...?
 
 ### Emscripten
 
