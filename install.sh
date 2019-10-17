@@ -14,11 +14,11 @@ bold="\033[1m"
 green="\033[32m"
 
 echo "
-${m}┏━━━━━━━━━┓${reset}
-${m}┃         ┃${reset}
-${m}┃   ${reset}${bold}wasi${m} (${reset} ${bold}env${reset}
-${m}┃         ┃${reset}
-${m}┗━━━━━━━━━┛${reset}
+ ${m}┏━━━━━━━━━┓${reset}
+ ${m}┃         ┃${reset}
+ ${m}┃   ${reset}${bold}wasi${m} (${reset} ${bold}env${reset}
+ ${m}┃         ┃${reset}
+ ${m}┗━━━━━━━━━┛${reset}
 "
 
 echo "${green}${bold}> Installing wasienv${reset}"
