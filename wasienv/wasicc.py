@@ -5,13 +5,14 @@ from __future__ import print_function
 import sys
 import os
 
-from .tools import logger, run_process, try_to_wrap_executable, find_output_arg, wrap_run
+from .tools import logger, run_process, try_to_wrap_executable, find_output_arg, wrap_run, check_program
 from .constants import CC, CXX, WASI_SYSROOT, STUBS_SYSTEM_LIB, STUBS_SYSTEM_PREAMBLE
 
 
 @wrap_run
 def run(args):
     main_program = CXX if args[0].endswith("wasic++") else CC
+    check_program(main_program)
     if '--version' in args:
         print('''wasienv (wasienv gcc/clang-like replacement)''')
         return 0
@@ -40,7 +41,7 @@ def run(args):
     target, outargs = find_output_arg(args)
     if target:
         try_to_wrap_executable(target)
-    return return_code.returncode
+    return return_code
 
 
 if __name__ == '__main__':

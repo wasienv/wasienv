@@ -17,7 +17,7 @@ def run(args):
         exit(1)
 
     return_code = run_process(args[1:], check=False)
-    return return_code.returncode
+    return return_code
 
 
 if __name__ == '__main__':

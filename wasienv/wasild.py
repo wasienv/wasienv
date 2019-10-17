@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import sys
 
-from .tools import logger, run_process, find_output_arg, try_to_wrap_executable, wrap_run
+from .tools import logger, run_process, find_output_arg, try_to_wrap_executable, wrap_run, check_program
 from .constants import LD, WASI_SYSROOT
 
 
@@ -18,14 +18,14 @@ def run(args):
     
     # if not has_target:
     #     args.append("--target=wasm32-wasi")
-
+    check_program(LD)
     proc_args = [LD]+args[1:]
     return_code = run_process(proc_args, check=False)
     target, outargs = find_output_arg(args)
     args.append('-lwasi-emulated-mman')
     if target:
         try_to_wrap_executable(target)
-    return return_code.returncode
+    return return_code
 
 
 if __name__ == '__main__':

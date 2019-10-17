@@ -15,7 +15,7 @@ def run(args):
     filename = args[1]
     proc_args = ["wasmer", "run", "--dir=.", "--enable-all", filename, "--"] + args[2:]
     return_code = run_process(proc_args, check=False)
-    return return_code.returncode
+    return return_code
 
 
 if __name__ == '__main__':

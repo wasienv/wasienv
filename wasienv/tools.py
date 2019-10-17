@@ -13,53 +13,53 @@ logger = logging.getLogger('wasienv')
 
 
 class Py2CalledProcessError(subprocess.CalledProcessError):
-  def __init__(self, returncode, cmd, output=None, stderr=None):
-    super(Exception, self).__init__(returncode, cmd, output, stderr)
-    self.returncode = returncode
+  def __init__(self, return_code, cmd, output=None, stderr=None):
+    super(Exception, self).__init__(return_code, cmd, output, stderr)
+    self.return_code = return_code
     self.cmd = cmd
     self.output = output
     self.stderr = stderr
 
+
 class Py2CompletedProcess:
-  def __init__(self, args, returncode, stdout, stderr):
+  def __init__(self, args, return_code, stdout, stderr):
     self.args = args
-    self.returncode = returncode
+    self.return_code = return_code
     self.stdout = stdout
     self.stderr = stderr
 
-  def __repr__(self):
-    _repr = ['args=%s, returncode=%s' % (self.args, self.returncode)]
-    if self.stdout is not None:
-      _repr += 'stdout=' + repr(self.stdout)
-    if self.stderr is not None:
-      _repr += 'stderr=' + repr(self.stderr)
-    return 'CompletedProcess(%s)' % ', '.join(_repr)
-
-  def check_returncode(self):
-    if self.returncode != 0:
-      raise Py2CalledProcessError(returncode=self.returncode, cmd=self.args, output=self.stdout, stderr=self.stderr)
+  def check(self):
+    if self.return_code != 0:
+      raise Py2CalledProcessError(return_code=self.return_code, cmd=self.args, output=self.stdout, stderr=self.stderr)
 
 
-def run_process(cmd, check=True, input=None, *args, **kw):
-  logger.debug("wasienv run process: {}".format(" ".join(cmd)))
-  debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
+def check_program(cmd):
+    if not os.path.exists(cmd):
+        raise Exception("The program {} was not found. Is the SDK installed?\nYou can install it via: wasienv install-sdk unstable".format(os.path.basename(cmd)))
 
-  if hasattr(subprocess, "run"):
-    ret = subprocess.run(cmd, check=check, input=input, *args, **kw)
-    logger.debug(debug_text)
-    return ret
 
-  # Python 2 compatibility: Introduce Python 3 subprocess.run-like behavior
+def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
   if input is not None:
-    kw['stdin'] = subprocess.PIPE
+    kwargs['stdin'] = subprocess.PIPE
 
-  proc = subprocess.Popen(cmd, *args, **kw)
+  proc = subprocess.Popen(cmd, *args, **kwargs)
   stdout, stderr = proc.communicate(input)
   result = Py2CompletedProcess(cmd, proc.returncode, stdout, stderr)
   if check:
-    result.check_returncode()
-  logger.debug(debug_text)
+    result.check()
   return result
+
+
+def run_process(cmd, check=True, input=None, *args, **kwargs):
+  logger.debug("wasienv run process: {}".format(" ".join(cmd)))
+  debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
+
+  run = getattr(subprocess, "run", python2_subprocess_run)
+  ret = run(cmd, check=check, input=input, *args, **kwargs)
+  logger.debug(debug_text)
+
+  return ret.return_code
+
 
 def is_exe(fpath):
     return os.path.isfile(fpath) and os.access(fpath, os.X_OK)

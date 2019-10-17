@@ -22,10 +22,10 @@ def run(args):
         os.environ["WASI_SDK_DIR"] = WASI_SDK_DIR
         proc_args = ["cmake", "-DCMAKE_TOOLCHAIN_FILE={}".format(WASI_CMAKE)]+args[2:]
         return_code = run_process(proc_args, check=False)
-        return return_code.returncode
+        return return_code
 
     return_code = run_process(args[1:], check=False)
-    return return_code.returncode
+    return return_code
 
 
 if __name__ == '__main__':
