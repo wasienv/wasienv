@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/wasienv/wasienv" target="_blank" rel="noopener noreferrer">
-    <img height="90" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasienv logo">
+    <img height="180" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasienv logo">
   </a>
 </p>
 
