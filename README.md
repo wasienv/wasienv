@@ -142,4 +142,4 @@ Wasienv is using WASI-SDK under the hood to compile to WebAssembly, however it d
 * `wasienv` is designed to work with **multiple SDKs** versions at the same time
 * `wasienv` is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
 
-We can see of `wasienv` as the merge between Emscripten and the WASI-SDK.
+We can think of `wasienv` as the merge between Emscripten and the WASI-SDK.
