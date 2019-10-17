@@ -9,7 +9,7 @@ import logging
 import shutil
 import stat
 
-logger = logging.getLogger('wasic')
+logger = logging.getLogger('wasienv')
 
 
 class Py2CalledProcessError(subprocess.CalledProcessError):
@@ -41,7 +41,7 @@ class Py2CompletedProcess:
 
 
 def run_process(cmd, check=True, input=None, *args, **kw):
-  logger.debug("Wasic run process: {}".format(" ".join(cmd)))
+  logger.debug("wasienv run process: {}".format(" ".join(cmd)))
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   if hasattr(subprocess, "run"):

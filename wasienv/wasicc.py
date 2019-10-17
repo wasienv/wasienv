@@ -13,12 +13,12 @@ from .constants import CC, CXX, WASI_SYSROOT, STUBS_SYSTEM_LIB, STUBS_SYSTEM_PRE
 def run(args):
     main_program = CXX if args[0].endswith("wasic++") else CC
     if '--version' in args:
-        print('''wasic (Wasic gcc/clang-like replacement)''')
+        print('''wasienv (wasienv gcc/clang-like replacement)''')
         return 0
 
     if len(args) == 1 and args[0] == '-v': # -v with no inputs
         # autoconf likes to see 'GNU' in the output to enable shared object support
-        print('wasic (Wasic gcc/clang-like replacement + linker emulating GNU ld)', file=sys.stderr)
+        print('wasienv (wasienv gcc/clang-like replacement + linker emulating GNU ld)', file=sys.stderr)
         code = run_process([main_program, '-v'], check=False).returncode
         return code
 

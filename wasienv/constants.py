@@ -2,7 +2,7 @@ import os
 
 from sdk import WASI_SDK_DIR
 
-WASIC_DIR    = os.path.dirname(__file__)
+wasienv_DIR    = os.path.dirname(__file__)
 
 # The location of the underlying binaries
 CC      = os.path.join(WASI_SDK_DIR, "bin/clang")
@@ -23,7 +23,7 @@ WASI_NM      = "wasinm"
 WASI_RANLIB  = "wasiranlib"
 WASI_RUN  = "wasirun"
 
-WASI_CMAKE   = os.path.abspath(os.path.join(WASIC_DIR, "wasic.cmake"))
+WASI_CMAKE   = os.path.abspath(os.path.join(wasienv_DIR, "wasienv.cmake"))
 
-STUBS_SYSTEM_LIB = os.path.join(WASIC_DIR, "stubs")
+STUBS_SYSTEM_LIB = os.path.join(wasienv_DIR, "stubs")
 STUBS_SYSTEM_PREAMBLE = os.path.join(STUBS_SYSTEM_LIB, "preamble.h")

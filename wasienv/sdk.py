@@ -10,8 +10,8 @@ from tools import logger
 # Where the python packages live
 PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))
 
-# Where the Wasic storage lives
-WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasic-storage")
+# Where the wasienv storage lives
+WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasienv-storage")
 WASI_SDKS_DIR = os.path.join(WASI_STORAGE_DIR, "sdks")
 
 CURRENT_SDK = "7"

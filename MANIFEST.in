@@ -1,5 +1,5 @@
-include wasic/wasic.cmake
+include wasienv/wasienv.cmake
 include README.md
 include LICENSE
 
-recursive-include wasic/stubs *
+recursive-include wasienv/stubs *
