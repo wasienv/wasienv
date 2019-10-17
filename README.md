@@ -12,7 +12,7 @@
 
 # Wasienv: WASI Development Workflow for Humans
 
-Wasienv is a tool that aims to bring all projects to WebAssembly WASI. With `wasienv` you can compile C/C++ projects easily to WASI, so you can run them anywhere (with any Standalone WASI WebAssembly runtime, or [in the Browser](https://webassembly.sh)).
+Wasienv is a tool that aims to bring all projects to [WebAssembly WASI](https://github.com/WebAssembly/WASI). With `wasienv` you can compile C/C++ projects easily to WASI, so you can run them anywhere (with any Standalone WASI WebAssembly runtime, or [in the Browser](https://webassembly.sh)).
 
 > Note: If you aim to use the WebAssembly files in the web directly (using graphics, audio or other tools that are not supported in WASI) then [Emscripten](https://emscripten.org/) is probably a much better choice.
 
@@ -20,7 +20,7 @@ Wasienv is a tool that aims to bring all projects to WebAssembly WASI. With `was
 
 You can install `wasienv` with:
 
-```
+```sh
 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 ```
 
@@ -28,10 +28,10 @@ curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 
 If you want to compile a C file to a WebAssembly WASI:
 
-```bash
+```sh
 # To compile to a WebAssembly WASI file
 # This command will generate:
-#  • A executable: ./example
+#  • An executable: ./example
 #  • A WebAssembly file: ./example.wasm
 wasicc examples/example.c -o example
 
@@ -44,7 +44,7 @@ wasimake cmake .
 
 ## Commands
 
-When installing `wasienv`, the following commands will be automatically avialable:
+When installing `wasienv`, the following commands will be automatically available:
 
 ### `wasienv`
 
@@ -52,13 +52,13 @@ This is the compiler toolchain. You have two commands available:
 
 For installing a SDK (`wasienv install-sdk`):
 
-```bash
+```sh
 wasienv install-sdk 7
 ```
 
 For setting a SDK as the default (`wasienv default-sdk`):
 
-```bash
+```sh
 wasienv default-sdk 7
 ```
 
@@ -78,7 +78,7 @@ It's a helper that adds the wasienv environment vars (`CC`, `CXX`, `RUNLIB`, ...
 
 Example:
 
-```bash
+```sh
 wasiconfigure ./configure
 ```
 
@@ -88,7 +88,7 @@ It's a helper that adds the wasienv environment vars (`CC`, `CXX`, `RUNLIB`, ...
 
 Example:
 
-```bash
+```sh
 # With CMake
 wasimake cmake .
 
@@ -100,7 +100,7 @@ wasimake make
 
 It executes a given WebAssembly file with a standalone WebAssembly runtime.
 
-```bash
+```sh
 wasirun myfile.wasm
 ```
 
@@ -108,38 +108,38 @@ wasirun myfile.wasm
 
 After cloning this repo, ensure dependencies are installed by running:
 
-```bash
+```sh
 python setup.py develop
 ```
 
 After that, all the commands will be available on your shell and you should be able to start seeing the changes directly without re-installing wasienv.
 
 
-## How wasienv compares to ...?
+## How wasienv compares to …?
 
 ### Emscripten
 
 [Emscripten](https://emscripten.org/) is a great toolchain that let's you compile your C/C++ projects to WebAssembly so you can use them in the web easily.
 
-However, Emscripten has a **non-stable ABI** (beacuse constant and fast iteration is very useful for their usecase).
+However, Emscripten has a **non-stable ABI** (because constant and fast iteration is very useful for their usecase).
 This makes it a bit challening for standalone-runtimes to continually adapt.
-Because of that, adopting the WASI ABI is a much easier path for standalone sever-side Wasm runtimes.
+Because of that, adopting the WASI ABI is a much easier path for standalone server-side WebAssembly runtimes.
 
-Right now Emscripten is [moving towards WASI adoption](https://github.com/emscripten-core/emscripten/issues/9479). However is not yet possible to create WASI-only Wasm files since they are doing a gradual approach.
-Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
+Right now Emscripten is [moving towards WASI adoption](https://github.com/emscripten-core/emscripten/issues/9479). However it is not yet possible to create WASI-only WebAssembly files since they are doing a gradual approach.
+Emscripten has also some tools that are not needed in the case of server-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
 
 Wasienv learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten, is without any doubt one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
 
 ### WASI-libc
 
-WASI-libc is the "frontend ABI" for WASI. By itself, it only provide header files and implementations that make C compilers adopt WASI very easily via the `--sysroot` flag.
+WASI-libc is the "frontend ABI" for WASI. By itself, it only provides header files and implementations that make C compilers adopt WASI very easily via the `--sysroot` flag.
 
 ### WASI-SDK
 
 WASI-SDK is the union between `WASI-libc` and the compiler binaries `clang`, `wasm-ld`, ...
 
 Wasienv is using WASI-SDK under the hood to compile to WebAssembly, however it differs from it in two major ways:
-* `wasienv` is designed to work with **multiple SDKs** versions at the same time
-* `wasienv` is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
+1. `wasienv` is designed to work with **multiple SDKs** versions at the same time,
+2. `wasienv` is completely focused on the **ergonomics**, exposing very simple to use CLI tools so that projects can adopt it easily.
 
 We can think of `wasienv` as the merge between Emscripten and the WASI-SDK.
