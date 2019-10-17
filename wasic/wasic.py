@@ -11,7 +11,7 @@ from .sdk import download_and_unpack, CURRENT_SDK, SDKAlreadyExists, set_default
 @wrap_run
 def run(args):
     if len(args) <= 1:
-        print("WASIc command line tool")
+        print("Wasic command line tool")
         return
     if args[1] == "install-sdk":
         sdk_version = args[2]

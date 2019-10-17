@@ -10,11 +10,11 @@ set(CMAKE_SYSTEM_PROCESSOR x86)
 
 set(CMAKE_C_COMPILER $ENV{WASI_CC})
 set(CMAKE_CXX_COMPILER $ENV{WASI_CXX})
-set(CMAKE_LINKER $ENV{WASI_LD} CACHE STRING "WASIc build")
-set(CMAKE_AR $ENV{WASI_AR} CACHE STRING "WASIc build")
-set(CMAKE_RANLIB $ENV{WASI_RANLIB} CACHE STRING "WASIc build")
+set(CMAKE_LINKER $ENV{WASI_LD} CACHE STRING "Wasic build")
+set(CMAKE_AR $ENV{WASI_AR} CACHE STRING "Wasic build")
+set(CMAKE_RANLIB $ENV{WASI_RANLIB} CACHE STRING "Wasic build")
 
-set(CMAKE_EXE_LINKER_FLAGS "-Wl,--no-threads" CACHE STRING "WASIc build")
+set(CMAKE_EXE_LINKER_FLAGS "-Wl,--no-threads" CACHE STRING "Wasic build")
 
 # Don't look in the sysroot for executables to run during the build
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
@@ -51,8 +51,8 @@ endif()
 
 # set(CMAKE_C_COMPILER_TARGET ${triple} CACHE STRING "wasi-sdk build")
 # set(CMAKE_CXX_COMPILER_TARGET ${triple} CACHE STRING "wasi-sdk build")
-# set(CMAKE_C_FLAGS "-v" CACHE STRING "WASIc build")
-# set(CMAKE_CXX_FLAGS "-v -std=c++11" CACHE STRING "WASIc build")
+# set(CMAKE_C_FLAGS "-v" CACHE STRING "Wasic build")
+# set(CMAKE_CXX_FLAGS "-v -std=c++11" CACHE STRING "Wasic build")
 
-# set(CMAKE_SYSROOT ${WASI_SDK_PREFIX}/share/wasi-sysroot CACHE STRING "WASIc build")
-# set(CMAKE_STAGING_PREFIX ${WASI_SDK_PREFIX}/share/wasi-sysroot CACHE STRING "WASIc build")
+# set(CMAKE_SYSROOT ${WASI_SDK_PREFIX}/share/wasi-sysroot CACHE STRING "Wasic build")
+# set(CMAKE_STAGING_PREFIX ${WASI_SDK_PREFIX}/share/wasi-sysroot CACHE STRING "Wasic build")

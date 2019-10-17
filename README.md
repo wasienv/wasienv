@@ -1,6 +1,6 @@
-# WASIc: The WASI Compiler Toolchain
+# Wasic: The WASI Compiler Toolchain
 
-WASIc is a toolchain for compiling to WebAssembly WASI, that let you compile C/C++ projects easily to WASI, so you can run them anywhere (in the Browsers, or with any Standalone WASI WebAssembly runtime).
+Wasic is a toolchain for compiling to WebAssembly WASI, that let you compile C/C++ projects easily to WASI, so you can run them anywhere (in the Browsers, or with any Standalone WASI WebAssembly runtime).
 
 > Note: If you aim to use the WebAssembly files in the web directly (using graphics, audio or other tools that are not supported in WASI) then [Emscripten](https://emscripten.org/) is probably a much better choice.
 
@@ -12,7 +12,7 @@ You can install `wasic` with:
 curl https://raw.githubusercontent.com/wasic-core/wasic/master/install.sh | sh
 ```
 
-## Using WASIc
+## Using Wasic
 
 If you want to compile a file to a WebAssembly WASI:
 
@@ -62,7 +62,7 @@ It also detects autoexecutables in the output and wraps to execute them with a W
 
 ### `wasiconfigure`
 
-It's a helper that adds the WASIc environment vars (`CC`, `CXX`, `RUNLIB`, ...) to the following command (`./configure`).
+It's a helper that adds the Wasic environment vars (`CC`, `CXX`, `RUNLIB`, ...) to the following command (`./configure`).
 
 Example:
 
@@ -72,7 +72,7 @@ wasiconfigure ./configure
 
 ### `wasimake`
 
-It's a helper that adds the WASIc environment vars (`CC`, `CXX`, `RUNLIB`, ...) for the make (`make` or `cmake`).
+It's a helper that adds the Wasic environment vars (`CC`, `CXX`, `RUNLIB`, ...) for the make (`make` or `cmake`).
 
 Example:
 
@@ -103,7 +103,7 @@ python setup.py develop
 After that, all the commands will be available on your shell and you should be able to start seeing the changes directly without re-installing wasic.
 
 
-## How WASIc compares to ...?
+## How Wasic compares to ...?
 
 ### Emscripten
 
@@ -116,7 +116,7 @@ Because of that, adopting the WASI ABI is a much easier path for standalone seve
 Right now Emscripten is moving towards WASI adoption. However is not yet possible to create WASI-only Wasm files since they are doing a gradual approach.
 Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
 
-WASIc learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten is without any doubt, one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
+Wasic learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten is without any doubt, one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
 
 ### WASI-libc
 
@@ -126,8 +126,8 @@ WASI-libc is the "frontend ABI" for WASI. By itself, it only provide header file
 
 WASI-SDK is the union between `WASI-libc` and the compiler binaries `clang`, `wasm-ld`, ...
 
-WASIc is using WASI-SDK under the hood to compile to WebAssembly, however it differs from it in two major ways:
-* WASIc is designed to work with **multiple SDKs** versions at the same time
-* WASIc is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
+Wasic is using WASI-SDK under the hood to compile to WebAssembly, however it differs from it in two major ways:
+* Wasic is designed to work with **multiple SDKs** versions at the same time
+* Wasic is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
 
-We can see of WASIc as the merge between Emscripten and the WASI-SDK.
+We can see of Wasic as the merge between Emscripten and the WASI-SDK.

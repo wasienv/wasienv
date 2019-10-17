@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # This install script is intended to download and install the latest available
-# release of WASIc.
+# release of Wasic.
 
 # You can install using this script:
 # $ curl https://raw.githubusercontent.com/wasic-core/wasic/master/install.sh | sh
 
 set -e
-echo "Installing WASIc"
+echo "Installing Wasic"
 pip install --user wasic --upgrade
 
 echo "Installing a WebAssembly WASI Runtime"

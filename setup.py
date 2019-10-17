@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='wasic',
-    description="WASIc is a C/C++ Compiler toolchain for WASI",
+    description="Wasic is a C/C++ Compiler toolchain for WASI",
     version='0.1.4',
     packages=['wasic'],
     include_package_data=True,

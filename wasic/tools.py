@@ -41,7 +41,7 @@ class Py2CompletedProcess:
 
 
 def run_process(cmd, check=True, input=None, *args, **kw):
-  logger.debug("WASIc run process: {}".format(" ".join(cmd)))
+  logger.debug("Wasic run process: {}".format(" ".join(cmd)))
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   if hasattr(subprocess, "run"):
