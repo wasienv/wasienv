@@ -4,7 +4,7 @@
 # release of wasienv.
 
 # You can install using this script:
-# $ curl https://raw.githubusercontent.com/wasienv-core/wasienv/master/install.sh | sh
+# $ curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 
 set -e
 echo "Installing wasienv"
