@@ -7,13 +7,27 @@
 # $ curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 
 set -e
-echo "Installing wasienv"
+reset="\033[0m"
+blue="\033[44m"
+m="\033[34;1m"
+bold="\033[1m"
+green="\033[32m"
+
+echo "
+${m}┏━━━━━━━━━┓${reset}
+${m}┃         ┃${reset}
+${m}┃   ${reset}${bold}wasi${m} (${reset} ${bold}env${reset}
+${m}┃         ┃${reset}
+${m}┗━━━━━━━━━┛${reset}
+"
+
+echo "${green}${bold}> Installing wasienv${reset}"
 pip install wasienv --upgrade || pip install wasienv --user --upgrade
 
-echo "Installing a WebAssembly WASI Runtime"
+echo "\n${green}${bold}> Installing a WebAssembly WASI Runtime${reset}"
 curl https://get.wasmer.io -sSfL | sh
 
-echo "Installing the required WASI SDKs"
+echo "\n${green}${bold}> Installing the required WASI SDKs${reset}"
 # unstable is the most stable version of the WASI sdk for now
 wasienv install-sdk unstable
 wasienv default-sdk unstable
