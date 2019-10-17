@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+
 from setuptools import setup
 import os
+import codecs
 
 
 CURRENT_DIR = os.path.dirname(__file__)
@@ -14,13 +17,13 @@ def get_long_description():
 setup(
     name='wasic',
     description="Wasic is a C/C++ Compiler toolchain for WASI",
-    version='0.1.5',
-    long_description=get_long_description(),
+    # long_description=get_long_description(),
     long_description_content_type="text/markdown",
     keywords="webassembly wasi wasic wasmer",
     author="Syrus Akbary",
     author_email="syrus@wasmer.io",
     url="https://github.com/wasic-core/wasic",
+    version='0.1.6',
     packages=['wasic'],
     include_package_data=True,
     license="MIT",
