@@ -8,7 +8,7 @@
 
 set -e
 echo "Installing wasienv"
-pip install --user wasienv --upgrade
+pip install wasienv --upgrade || pip install wasienv --user --upgrade
 
 echo "Installing a WebAssembly WASI Runtime"
 curl https://get.wasmer.io -sSfL | sh
