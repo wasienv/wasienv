@@ -28,6 +28,9 @@ setup(
     include_package_data=True,
     license="MIT",
     zip_safe=False,
+    install_requires=[
+        "requests",
+    ],
     entry_points={'console_scripts': [
         'wasiar = wasienv.wasiar:run',
         'wasienv = wasienv.wasienv:run',
