@@ -126,7 +126,7 @@ This makes it a bit challening for standalone-runtimes to continually adapt.
 Because of that, adopting the WASI ABI is a much easier path for standalone sever-side Wasm runtimes.
 
 Right now Emscripten is [moving towards WASI adoption](https://github.com/emscripten-core/emscripten/issues/9479). However is not yet possible to create WASI-only Wasm files since they are doing a gradual approach.
-Emscripten has also some tools that are not needed in the case of sever-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
+Emscripten has also some tools that are not needed (nor supported) in the case of server-side Standalone WebAssembly runtimes, such as [`EM_JS` and `EM_ASM`](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/Interacting-with-code.html#calling-javascript-from-c-c).
 
 Wasienv learns a lot from Emscripten, since they figured out the perfect ergonomics for having C/C++ projects to adopt WebAssembly. Alon, the creator of Emscripten, is without any doubt one of the brilliant minds behind WebAssembly and he inspired us with his work to keep improving the ergonomics of WASI.
 
@@ -136,10 +136,10 @@ WASI-libc is the "frontend ABI" for WASI. By itself, it only provide header file
 
 ### WASI-SDK
 
-WASI-SDK is the union between `WASI-libc` and the compiler binaries `clang`, `wasm-ld`, ...
+We can see WASI-SDK as the union between `WASI-libc` and the compiler binaries `clang`, `wasm-ld`, ...
 
 Wasienv is using WASI-SDK under the hood to compile to WebAssembly, however it differs from it in two major ways:
-* `wasienv` is designed to work with **multiple SDKs** versions at the same time
+* `wasienv` is designed to work with **multiple SDKs** versions
 * `wasienv` is completely focused on the **ergonomics**, exposing very simple to use CLI tools so projects can adopt it easily.
 
 We can think of `wasienv` as the merge between Emscripten and the WASI-SDK.
