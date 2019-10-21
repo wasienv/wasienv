@@ -11,6 +11,26 @@ import stat
 
 logger = logging.getLogger('wasienv')
 
+# Part of this implementation is taken/inspired from Emscripten tools/shared.py
+# https://github.com/emscripten-core/emscripten/blob/2431347a32dcce89ab3e26e86de445cada58745c/tools/shared.py#L140-L191
+# LICENSE below:
+
+# Copyright (c) 2010-2014 Emscripten authors, see AUTHORS file.
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
 
 class Py2CalledProcessError(subprocess.CalledProcessError):
   def __init__(self, return_code, cmd, output=None, stderr=None):
@@ -64,11 +84,11 @@ def run_process(cmd, check=True, input=None, *args, **kwargs):
 def is_exe(fpath):
     return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
+
 def try_to_wrap_executable(exe_name):
     target_path = os.path.join(os.getcwd(), exe_name)
     if not is_exe(target_path) or exe_name.endswith(".wasm"):
         return
-
     # It's a cmake file, we skip
     # CMake does some checks like the size of a struct generating
     # a file with certain contents on it and then doing a check using
