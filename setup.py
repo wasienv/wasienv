@@ -23,11 +23,14 @@ setup(
     author="Syrus Akbary",
     author_email="syrus@wasmer.io",
     url="https://github.com/wasienv-core/wasienv",
-    version='0.1.7',
+    version='0.1.9',
     packages=['wasienv'],
     include_package_data=True,
     license="MIT",
     zip_safe=False,
+    install_requires=[
+        "requests",
+    ],
     entry_points={'console_scripts': [
         'wasiar = wasienv.wasiar:run',
         'wasienv = wasienv.wasienv:run',
