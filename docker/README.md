@@ -4,7 +4,7 @@
 
 Based on: **debian:stretch-slim**
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/wasienv/wasi.svg?style=flat-square)](https://store.docker.com/community/images/wasienv/wasi/) [![Size](https://images.microbadger.com/badges/image/wasienv/wasi.svg)](https://microbadger.com/images/wasienv/wasi/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/wasienv/wasienv.svg?style=flat-square)](https://store.docker.com/community/images/wasienv/wasienv/) [![Size](https://images.microbadger.com/badges/image/wasienv/wasienv.svg)](https://microbadger.com/images/wasienv/wasienv/)
 
 The minimal version that is required to compile C++ code with [wasienv](https://github.com/wasienv/wasienv) to WebAssembly (Wasm). The goal was to provide the best and the most lightweight foundation for custom Docker images.
 Each tag was build from single [Dockerfile](https://github.com/wasienv/wasienv/blob/master/docker/Dockerfile)
