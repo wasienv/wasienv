@@ -59,7 +59,7 @@ docker run \
   -v $(pwd):$(pwd) \
   -u $(id -u):$(id -g) \
   wasienv/wasienv \
-  wasicc helloworld.cpp -o helloworld.wasm
+  wasic++ `pwd`/helloworld.cpp -o `pwd`/helloworld.wasm
 
 # execute on host machine
 wasmer run helloworld.wasm
