@@ -100,16 +100,16 @@ def download_and_unpack(sdk_name):
 
     sdk_dir = get_sdk_dir(sdk_name)
     logger.info("Downloading WASI SDK to: {} from: {}".format(sdk_dir, download_url))
-    with requests.get(download_url) as r:
-        logger.info("SDK Downloaded, uncompressing")
-        tf = tarfile.open(fileobj=StringIO(r.content))
-        os.makedirs(sdk_dir)
-        tf.extractall(sdk_dir)
-        # Assert the sysroot dir was created
-        sysroot = get_sdk_sysroot(sdk, sdk_name)
-        if not os.path.isdir(sysroot):
-            raise SDKException("The SDK expected sysroot doesn't exist: {}".format(sysroot))
-        logger.info("SDK installed successfully")
+    response = requests.get(download_url)
+    logger.info("SDK Downloaded, uncompressing")
+    tf = tarfile.open(fileobj=StringIO(response.content))
+    os.makedirs(sdk_dir)
+    tf.extractall(sdk_dir)
+    # Assert the sysroot dir was created
+    sysroot = get_sdk_sysroot(sdk, sdk_name)
+    if not os.path.isdir(sysroot):
+        raise SDKException("The SDK expected sysroot doesn't exist: {}".format(sysroot))
+    logger.info("SDK installed successfully")
 
 
 def get_sdk_sysroot(sdk, sdk_name):
