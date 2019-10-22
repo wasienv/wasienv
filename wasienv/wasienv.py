@@ -17,7 +17,7 @@ def run(args):
         sdk_version = args[2]
         try:
             download_and_unpack(sdk_version)
-        except SDKAlreadyExists, e:
+        except SDKAlreadyExists as e:
             print(e)
     elif args[1] == "default-sdk":
         if len(args) == 3:

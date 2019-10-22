@@ -1,11 +1,16 @@
 import os
 import sys
 import platform
-from StringIO import StringIO
+try:
+    # Python 3
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 import requests
 import tarfile
-from tools import logger
+
+from .tools import logger
 
 # Where the python packages live
 PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))

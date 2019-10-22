@@ -33,24 +33,24 @@ logger = logging.getLogger('wasienv')
 # THE SOFTWARE.
 
 class Py2CalledProcessError(subprocess.CalledProcessError):
-  def __init__(self, return_code, cmd, output=None, stderr=None):
-    super(Exception, self).__init__(return_code, cmd, output, stderr)
-    self.return_code = return_code
+  def __init__(self, returncode, cmd, output=None, stderr=None):
+    super(Exception, self).__init__(returncode, cmd, output, stderr)
+    self.returncode = returncode
     self.cmd = cmd
     self.output = output
     self.stderr = stderr
 
 
 class Py2CompletedProcess:
-  def __init__(self, args, return_code, stdout, stderr):
+  def __init__(self, args, returncode, stdout, stderr):
     self.args = args
-    self.return_code = return_code
+    self.returncode = returncode
     self.stdout = stdout
     self.stderr = stderr
 
   def check(self):
-    if self.return_code != 0:
-      raise Py2CalledProcessError(return_code=self.return_code, cmd=self.args, output=self.stdout, stderr=self.stderr)
+    if self.returncode != 0:
+      raise Py2CalledProcessError(returncode=self.returncode, cmd=self.args, output=self.stdout, stderr=self.stderr)
 
 
 def check_program(cmd):
@@ -78,7 +78,7 @@ def run_process(cmd, check=True, input=None, *args, **kwargs):
   ret = run(cmd, check=check, input=input, *args, **kwargs)
   logger.debug(debug_text)
 
-  return ret.return_code
+  return ret.returncode
 
 
 def is_exe(fpath):
@@ -144,7 +144,7 @@ def find_output_arg(args):
 
 
 def set_environ():
-    from constants import WASI_CC, WASI_CXX, WASI_LD, WASI_AR, WASI_RANLIB, WASI_NM
+    from .constants import WASI_CC, WASI_CXX, WASI_LD, WASI_AR, WASI_RANLIB, WASI_NM
 
     os.environ["CC"] = WASI_CC
     os.environ["CXX"] = WASI_CXX

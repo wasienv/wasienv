@@ -1,6 +1,6 @@
 import os
 
-from sdk import WASI_SDK_DIR
+from .sdk import WASI_SDK_DIR
 
 wasienv_DIR    = os.path.dirname(__file__)
 
