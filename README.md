@@ -24,6 +24,8 @@ You can install `wasienv` with:
 curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 ```
 
+> Note: we also ship `wasienv` in a Docker image. You can check [how to use the Wasienv Docker image here](https://github.com/wasienv/wasienv/blob/master/docker/Dockerfile).
+
 ## Using wasienv
 
 If you want to compile a C file to a WebAssembly WASI:
