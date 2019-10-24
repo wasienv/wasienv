@@ -10,7 +10,7 @@
   </a>
 </p>
 
-# Wasienv: WASI Development Workflow for Humans
+# Wasienv: WASI Development Toolchain for C/C++
 
 Wasienv is a tool that aims to bring all projects to [WebAssembly WASI](https://github.com/WebAssembly/WASI). With `wasienv` you can compile C/C++ projects easily to WASI, so you can run them anywhere (with any Standalone WASI WebAssembly runtime, or [in the Browser](https://webassembly.sh)).
 
