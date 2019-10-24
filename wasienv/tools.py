@@ -97,7 +97,7 @@ def try_to_wrap_executable(exe_name):
         return
 
     st = os.stat(target_path)
-    with open(target_path,'r') as f:
+    with open(target_path, 'rb') as f:
         first_bytes = f.read(4)
         # is_wasm = first_bytes == [0x00, 0x61, 0x73, 0x6d]
         is_wasm = bytearray(first_bytes) == b'\x00asm'
