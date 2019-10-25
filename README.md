@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/wasienv/wasienv/actions?workflow=CI">
+    <img src="https://github.com/wasienv/wasienv/workflows/CI/badge.svg?style=flat-square" alt="Tests">
+  </a>
+
   <a href="https://github.com/wasmerio/wasmer/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/wasienv/wasienv.svg?style=flat-square" alt="License">
   </a>
