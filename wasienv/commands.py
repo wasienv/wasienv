@@ -43,4 +43,4 @@ def wasiranlib():
 
 
 def wasirun():
-    return execute(wasirun)
+    return execute(wasirun_run)
