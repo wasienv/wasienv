@@ -2,11 +2,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 
-from .tools import logger, run_process, wrap_run, check_program
+from .tools import logger, run_process, execute, check_program
 from .constants import AR
 
 
-@wrap_run
 def run(args):
     check_program(AR)
     proc_args = [AR]+args[1:]
@@ -15,4 +14,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)

@@ -85,6 +85,16 @@ def is_exe(fpath):
     return os.path.isfile(fpath) and os.access(fpath, os.X_OK)
 
 
+def is_wasm(fpath):
+    with open(fpath, 'rb') as f:
+        first_bytes = f.read(4)
+        # is_wasm = first_bytes == [0x00, 0x61, 0x73, 0x6d]
+        is_wasm = bytearray(first_bytes) == b'\x00asm'
+        f.seek(0)
+        return is_wasm
+    return False
+
+
 def try_to_wrap_executable(exe_name):
     target_path = os.path.join(os.getcwd(), exe_name)
     if not is_exe(target_path) or exe_name.endswith(".wasm"):
@@ -97,13 +107,8 @@ def try_to_wrap_executable(exe_name):
         return
 
     st = os.stat(target_path)
-    with open(target_path, 'rb') as f:
-        first_bytes = f.read(4)
-        # is_wasm = first_bytes == [0x00, 0x61, 0x73, 0x6d]
-        is_wasm = bytearray(first_bytes) == b'\x00asm'
-        f.seek(0)
-        if not is_wasm:
-            return
+    if not is_wasm(target_path):
+        return
 
     new_target_path = "{}.wasm".format(target_path)
     shutil.copy(target_path, new_target_path)
@@ -161,12 +166,10 @@ def set_environ():
     os.environ["WASI_NM"] = WASI_NM
 
 
-def wrap_run(f):
-    def wrapped_f():
-        try:
-            logging.basicConfig(level=logging.INFO)
-            sys.exit(f(sys.argv))
-        except KeyboardInterrupt:
-            logger.warning("KeyboardInterrupt")
-            sys.exit(1)
-    return wrapped_f
+def execute(f):
+    try:
+        logging.basicConfig(level=logging.INFO)
+        sys.exit(f(sys.argv))
+    except KeyboardInterrupt:
+        logger.warning("KeyboardInterrupt")
+        sys.exit(1)

@@ -4,11 +4,11 @@ from __future__ import print_function
 
 import sys
 
-from .tools import logger, run_process, find_output_arg, try_to_wrap_executable, wrap_run, check_program
+from .tools import logger, run_process, find_output_arg, try_to_wrap_executable, execute, check_program
 from .constants import LD, WASI_SYSROOT
 
 
-@wrap_run
+
 def run(args):
     # has_sysroot = any([arg.startswith("--sysroot") for arg in args])
     # has_target = any([arg.startswith("--target") for arg in args])
@@ -29,4 +29,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)

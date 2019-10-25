@@ -4,10 +4,10 @@ from __future__ import print_function
 
 import sys
 
-from .tools import logger, run_process, wrap_run
+from .tools import logger, run_process, execute
 
 
-@wrap_run
+
 def run(args):
     if len(args) < 2:
         # It should be wasirun x.wasm
@@ -19,4 +19,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)

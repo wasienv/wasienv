@@ -4,11 +4,10 @@ from __future__ import print_function
 
 import sys
 import os
-from .tools import wrap_run
+from .tools import execute
 from .sdk import download_and_unpack, CURRENT_SDK, SDKAlreadyExists, set_default_sdk
 
 
-@wrap_run
 def run(args):
     if len(args) <= 1:
         print("wasienv command line tool")
@@ -28,4 +27,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)

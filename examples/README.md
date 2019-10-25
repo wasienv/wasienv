@@ -5,7 +5,23 @@
 You can compile the `example.c` file into WebAssembly with `wasicc`:
 
 ```bash
+cd examples/c
+
 wasicc example.c -o example
+```
+
+This will create:
+* `example.wasm` file with the WebAssembly contents
+* `example` executable that runs `example.wasm` with a WebAssembly runtime
+
+### Simple C file
+
+You can compile the `example.cpp` file into WebAssembly with `wasicc`:
+
+```bash
+cd examples/cpp
+
+wasic++ example.c -o example
 ```
 
 This will create:

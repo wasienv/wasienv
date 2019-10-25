@@ -111,11 +111,18 @@ wasirun myfile.wasm
 After cloning this repo, ensure dependencies are installed by running:
 
 ```sh
-python setup.py develop
+make install-dev
 ```
 
 After that, all the commands will be available on your shell and you should be able to start seeing the changes directly without re-installing wasienv.
 
+## Testing
+
+After running `make install-dev` you can run directly:
+
+```sh
+make test
+```
 
 ## How wasienv compares to …?
 

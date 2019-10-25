@@ -5,10 +5,10 @@ from __future__ import print_function
 import sys
 import os
 
-from .tools import logger, run_process, set_environ, wrap_run
+from .tools import logger, run_process, set_environ, execute
 from .constants import WASI_CMAKE, WASI_SDK_DIR
 
-@wrap_run
+
 def run(args):
     set_environ()
 
@@ -21,4 +21,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)

@@ -4,11 +4,11 @@ from __future__ import print_function
 
 import sys
 
-from .tools import logger, run_process, wrap_run, check_program
+from .tools import logger, run_process, execute, check_program
 from .constants import RANLIB
 
 
-@wrap_run
+
 def run(args):
     check_program(RANLIB)
     proc_args = [RANLIB]+args[1:]
@@ -17,4 +17,4 @@ def run(args):
 
 
 if __name__ == '__main__':
-    run()
+    execute(run)
