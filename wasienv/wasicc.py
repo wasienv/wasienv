@@ -24,18 +24,31 @@ def run(args):
 
     has_sysroot = any([arg.startswith("--sysroot") for arg in args])
     has_target = any([arg.startswith("--target") for arg in args])
+    has_no_wasi = any([arg.startswith("--no-wasi") for arg in args])
+
+    # Remove the no wasi from the args since clang doesn't support it
+    if "--no-wasi" in args: args.remove("--no-wasi")
+
     
     args.append('-isystem{}'.format(STUBS_SYSTEM_LIB))
     args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
-    args.append('-D_WASI_EMULATED_MMAN')
+    
+    if not has_no_wasi:
+        args.append('-D_WASI_EMULATED_MMAN')
 
     if not has_sysroot:
         args.append("--sysroot={}".format(WASI_SYSROOT))
 
     if not has_target:
-        args.append("--target=wasm32-wasi")
+        if has_no_wasi:
+            args.append("--target=wasm32-unknown-unknown")
+        else:
+            args.append("--target=wasm32-wasi")
+    
+    print(args)
 
     proc_args = [main_program]+args[1:]
+    print(proc_args)
     return_code = run_process(proc_args, check=False)
     target, outargs = find_output_arg(args)
     if target:
