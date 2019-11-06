@@ -29,15 +29,18 @@ def run(args):
     # Remove the no wasi from the args since clang doesn't support it
     if "--no-wasi" in args: args.remove("--no-wasi")
 
-    
-    args.append('-isystem{}'.format(STUBS_SYSTEM_LIB))
-    args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
-    
+    if has_no_wasi:
+        args.append("--no-standard-libraries")
+        args.append("-Wl,--export-all")
+        args.append("-Wl,--no-entry")
+
+   
     if not has_no_wasi:
         args.append('-D_WASI_EMULATED_MMAN')
-
-    if not has_sysroot:
-        args.append("--sysroot={}".format(WASI_SYSROOT))
+        args.append('-isystem{}'.format(STUBS_SYSTEM_LIB))
+        args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
+        if not has_sysroot:
+            args.append("--sysroot={}".format(WASI_SYSROOT))
 
     if not has_target:
         if has_no_wasi:
