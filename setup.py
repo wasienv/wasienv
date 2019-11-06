@@ -36,6 +36,8 @@ setup(
         'wasienv = wasienv.commands:wasienv',
         'wasicc = wasienv.commands:wasicc',
         'wasic++ = wasienv.commands:wasicc',
+        'wasmcc = wasienv.commands:wasmcc',
+        'wasmc++ = wasienv.commands:wasmcc',
         'wasiconfigure = wasienv.commands:wasiconfigure',
         'wasild = wasienv.commands:wasild',
         'wasimake = wasienv.commands:wasimake',

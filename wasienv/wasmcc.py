@@ -10,7 +10,7 @@ from .constants import CC, CXX, WASI_SYSROOT, STUBS_SYSTEM_LIB, STUBS_SYSTEM_PRE
 
 
 def run(args):
-    main_program = CXX if args[0].endswith("wasic++") else CC
+    main_program = CXX if args[0].endswith("wasmc++") else CC
     check_program(main_program)
     if '--version' in args:
         print('''wasienv (wasienv gcc/clang-like replacement)''')
@@ -22,18 +22,15 @@ def run(args):
         code = run_process([main_program, '-v'], check=False).returncode
         return code
 
-    has_sysroot = any([arg.startswith("--sysroot") for arg in args])
     has_target = any([arg.startswith("--target") for arg in args])
-    
-    args.append('-isystem{}'.format(STUBS_SYSTEM_LIB))
-    args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
-    args.append('-D_WASI_EMULATED_MMAN')
 
-    if not has_sysroot:
-        args.append("--sysroot={}".format(WASI_SYSROOT))
+    # Flags decided by following: https://github.com/wasienv/wasienv/pull/8
+    args.append("--no-standard-libraries")
+    args.append("-Wl,--export-all")
+    args.append("-Wl,--no-entry")
 
     if not has_target:
-        args.append("--target=wasm32-wasi")
+        args.append("--target=wasm32-unknown-unknown")
 
     proc_args = [main_program]+args[1:]
     return_code = run_process(proc_args, check=False)
