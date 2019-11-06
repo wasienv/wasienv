@@ -72,7 +72,6 @@ def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
 
 def run_process(cmd, check=True, input=None, *args, **kwargs):
   logger.debug("wasienv run process: {}".format(" ".join(cmd)))
-  print("Yoooo wasienv run process: {}".format(" ".join(cmd)))
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   run = getattr(subprocess, "run", python2_subprocess_run)

@@ -47,11 +47,8 @@ def run(args):
             args.append("--target=wasm32-unknown-unknown")
         else:
             args.append("--target=wasm32-wasi")
-    
-    print(args)
 
     proc_args = [main_program]+args[1:]
-    print(proc_args)
     return_code = run_process(proc_args, check=False)
     target, outargs = find_output_arg(args)
     if target:
