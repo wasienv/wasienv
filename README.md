@@ -48,6 +48,16 @@ wasiconfigure ./configure
 wasimake cmake .
 ```
 
+If you want to compile a C file to plain WebAssembly:
+
+```sh
+# To compile to a WebAssembly file
+# This command will generate:
+#  • An executable: ./example
+#  • A WebAssembly file: ./example.wasm
+wasmcc examples/example.c -o example
+```
+
 ## Commands
 
 When installing `wasienv`, the following commands will be automatically available:
@@ -77,6 +87,14 @@ It also detects autoexecutables in the output and wraps to execute them with a W
 
 It's a wrapper on top of `clang++`, with additions for the stubs, sysroot and target.
 It also detects autoexecutables in the output and wraps to execute them with a WebAssembly WASI runtime via `wasirun`.
+
+### `wasmcc`
+
+It's a wrapper on top of `clang`, with additions for preconfiguring the wasm linker, target, etc...
+
+### `wasmc++`
+
+It's a wrapper on top of `clang++`, with additions for preconfiguring the wasm linker, target, etc...
 
 ### `wasiconfigure`
 

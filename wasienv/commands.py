@@ -1,6 +1,7 @@
 from .tools import execute
 from .wasiar import run as wasiar_run
 from .wasicc import run as wasicc_run
+from .wasmcc import run as wasmcc_run
 from .wasiconfigure import run as wasiconfigure_run
 from .wasienv import run as wasienv_run
 from .wasild import run as wasild_run
@@ -17,6 +18,8 @@ def wasiar():
 def wasicc():
     return execute(wasicc_run)
 
+def wasmcc():
+    return execute(wasmcc_run)
 
 def wasiconfigure():
     return execute(wasiconfigure_run)

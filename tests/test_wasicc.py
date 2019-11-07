@@ -8,14 +8,14 @@ os.chdir(EXAMPLES_DIR)
 
 
 def test_wasicc():
-    return_code = run(["wasicc", "c/example.c", "-o", "c/example"])
+    return_code = run(["wasicc", "c/example-wasi.c", "-o", "c/example-wasi"])
     assert return_code == 0
-    assert is_exe("c/example")
-    assert is_wasm("c/example.wasm")
+    assert is_exe("c/example-wasi")
+    assert is_wasm("c/example-wasi.wasm")
 
 
 def test_wasicpp():
-    return_code = run(["wasic++", "cpp/example.cpp", "-o", "cpp/example"])
+    return_code = run(["wasic++", "cpp/example-wasi.cpp", "-o", "cpp/example-wasi"])
     assert return_code == 0
-    assert is_exe("cpp/example")
-    assert is_wasm("cpp/example.wasm")
+    assert is_exe("cpp/example-wasi")
+    assert is_wasm("cpp/example-wasi.wasm")

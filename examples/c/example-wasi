@@ -1,0 +1,2 @@
+#!/bin/bash
+wasirun /Users/torch2424/Source/wasienv/examples/c/example-wasi.wasm "$@"
