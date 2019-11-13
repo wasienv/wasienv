@@ -97,7 +97,7 @@ def is_wasm(fpath):
 
 def try_to_wrap_executable(exe_name):
     target_path = os.path.join(os.getcwd(), exe_name)
-    if not is_exe(target_path) or exe_name.endswith(".wasm"):
+    if not is_exe(target_path) or exe_name.endswith(".wasm") or exe_name.endswith(".dylib") or exe_name.endswith(".dll") or exe_name.endswith(".so"):
         return
     # It's a cmake file, we skip
     # CMake does some checks like the size of a struct generating
