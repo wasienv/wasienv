@@ -114,7 +114,7 @@ echo "${green}${bold}> Installing wasienv${reset}"
 # Create wasienv directory
 mkdir -p $INSTALL_DIRECTORY/bin
 # Uninstall in case it exists
-pip uninstall wasienv -y
+pip uninstall wasienv -y || true
 # Install wasienv in the ~/.wasienv/bin directory
 pip install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
 
