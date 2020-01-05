@@ -15,4 +15,8 @@ RUN echo "## Done"
 
 RUN echo "## Installing wasienv"
 RUN curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
+
+ENV WASIENV_DIR="/root/.wasienv"
+ENV PATH="$WASIENV_DIR/bin:$PATH"
+
 RUN echo "## Done"
