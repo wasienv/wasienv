@@ -19,7 +19,7 @@ PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))
 WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasienv-storage")
 WASI_SDKS_DIR = os.path.join(WASI_STORAGE_DIR, "sdks")
 
-CURRENT_SDK = "7"
+CURRENT_SDK = "8"
 
 SDKS = {
     "5": {
@@ -43,11 +43,18 @@ SDKS = {
         },
         "sysroot": "wasi-sdk-7.0/opt/wasi-sdk"
     },
+    "8": {
+        "download_urls": {
+            "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-macos.tar.gz',
+            "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz',
+        },
+        "sysroot": "wasi-sdk-8.0/opt/wasi-sdk"
+    },
 }
 
 SDK_TAGS = {
-    "latest": "7",
-    "unstable": "7"
+    "latest": "8",
+    "unstable": "8"
 }
 
 
