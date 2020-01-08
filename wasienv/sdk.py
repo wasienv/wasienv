@@ -48,7 +48,7 @@ SDKS = {
             "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-macos.tar.gz',
             "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz',
         },
-        "sysroot": "wasi-sdk-8.0/opt/wasi-sdk"
+        "sysroot": "wasi-sdk-8.0/share/wasi-sdk"
     },
 }
 
