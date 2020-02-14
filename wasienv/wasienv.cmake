@@ -1,12 +1,13 @@
 # Cmake toolchain description file for the Makefile for WASI
 cmake_minimum_required(VERSION 3.4.0)
 
-set(CMAKE_CROSSCOMPILING TRUE)
+set(WASI TRUE)
 
 set(CMAKE_SYSTEM_NAME Generic) # Generic for now, to not trigger a Warning
 set(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR wasm32)
 set(CMAKE_SYSTEM_PROCESSOR x86)
+set(CMAKE_C_COMPILER_ID Wasienv)
 
 set(CMAKE_C_COMPILER $ENV{WASI_CC})
 set(CMAKE_CXX_COMPILER $ENV{WASI_CXX})
@@ -25,14 +26,15 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
 
 # We set the cross compiler using the WebAssembly VM
-if (NOT DEFINED CMAKE_CROSSCOMPILING_EMULATOR)
-  find_program(WASIRUN_EXECUTABLE NAMES wasirun)
-  if(WASIRUN_EXECUTABLE)
-    set(CMAKE_CROSSCOMPILING_EMULATOR "wasirun" CACHE FILEPATH "Path to the emulator for the target system.")
-  endif()
-endif()
-if(CMAKE_CROSSCOMPILING_EMULATOR)
-endif()
+# set(CMAKE_CROSSCOMPILING TRUE)
+# if (NOT DEFINED CMAKE_CROSSCOMPILING_EMULATOR)
+#   find_program(WASIRUN_EXECUTABLE NAMES wasirun)
+#   if(WASIRUN_EXECUTABLE)
+#     set(CMAKE_CROSSCOMPILING_EMULATOR "wasirun" CACHE FILEPATH "Path to the emulator for the target system.")
+#   endif()
+# endif()
+# if(CMAKE_CROSSCOMPILING_EMULATOR)
+# endif()
 
 
 # Not needed now (but perhaps in the future)
