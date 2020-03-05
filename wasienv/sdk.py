@@ -24,29 +24,29 @@ CURRENT_SDK = "8"
 SDKS = {
     "5": {
         "download_urls": {
-            "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-5/wasi-sdk-5.0-macos.tar.gz',
-            "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-5/wasi-sdk-5.0-linux.tar.gz',
+            "darwin": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-5/wasi-sdk-5.0-macos.tar.gz',
+            "linux": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-5/wasi-sdk-5.0-linux.tar.gz',
         },
         "sysroot": "wasi-sdk-5.0/opt/wasi-sdk"
     },
     "6": {
         "download_urls": {
-            "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-6/wasi-sdk-6.0-macos.tar.gz',
-            "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-6/wasi-sdk-6.0-linux.tar.gz',
+            "darwin": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-6/wasi-sdk-6.0-macos.tar.gz',
+            "linux": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-6/wasi-sdk-6.0-linux.tar.gz',
         },
         "sysroot": "wasi-sdk-6.0/opt/wasi-sdk"
     },
     "7": {
         "download_urls": {
-            "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-7/wasi-sdk-7.0-macos.tar.gz',
-            "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-7/wasi-sdk-7.0-linux.tar.gz',
+            "darwin": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-7/wasi-sdk-7.0-macos.tar.gz',
+            "linux": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-7/wasi-sdk-7.0-linux.tar.gz',
         },
         "sysroot": "wasi-sdk-7.0/opt/wasi-sdk"
     },
     "8": {
         "download_urls": {
-            "darwin": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-macos.tar.gz',
-            "linux": 'https://github.com/CraneStation/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz',
+            "darwin": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-macos.tar.gz',
+            "linux": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-8/wasi-sdk-8.0-linux.tar.gz',
         },
         "sysroot": "wasi-sdk-8.0"
     },
