@@ -23,7 +23,7 @@ setup(
     author="Syrus Akbary",
     author_email="syrus@wasmer.io",
     url="https://github.com/wasienv-core/wasienv",
-    version='0.5.2',
+    version='0.5.3',
     packages=['wasienv'],
     include_package_data=True,
     license="MIT",
