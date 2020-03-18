@@ -1,22 +1,38 @@
-<p align="center">
-  <a href="https://github.com/wasienv/wasienv" target="_blank" rel="noopener noreferrer">
-    <img height="180" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasienv logo">
+<div align="center">
+  <a href="https://docs.wasmer.io/ecosystem/wasienv" target="_blank" rel="noopener noreferrer">
+    <img width="300" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasmer logo">
   </a>
-</p>
+  
+  <p>
+    <a href="https://github.com/wasienv/wasienv/actions?workflow=CI">
+      <img src="https://github.com/wasienv/wasienv/workflows/CI/badge.svg?style=flat-square" alt="Tests">
+    </a>
+    <a href="https://slack.wasmer.io">
+      <img src="https://img.shields.io/static/v1?label=Slack&message=join%20chat&color=brighgreen&style=flat-square" alt="Slack channel">
+    </a> 
+    <a href="https://github.com/wasienv/wasienv" target="_blank" rel="noopener noreferrer">
+      <img height="180" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasienv logo">
+    </a>
+  </p>
 
-<p align="center">
-  <a href="https://github.com/wasienv/wasienv/actions?workflow=CI">
-    <img src="https://github.com/wasienv/wasienv/workflows/CI/badge.svg?style=flat-square" alt="Tests">
-  </a>
+  <h3>
+    <a href="https://docs.wasmer.io/ecosystem/wasienv">Wasienv Docs</a>
+    <span> • </span>
+    <a href="https://slack.wasmer.io/">Slack</a>
+    <span> • </span>
+    <a href="https://twitter.com/wasmerio">Twitter</a>
+  </h3>
 
-  <a href="https://github.com/wasmerio/wasmer/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/wasienv/wasienv.svg?style=flat-square" alt="License">
-  </a>
-</p>
+</div>
 
-# Wasienv: WASI Development Toolchain for C/C++
+<br />
 
-Wasienv is a tool that aims to bring all projects to [WebAssembly WASI](https://github.com/WebAssembly/WASI). With `wasienv` you can compile C/C++ projects easily to WASI, so you can run them anywhere (with any Standalone WASI WebAssembly runtime, or [in the Browser](https://webassembly.sh)).
+Wasienv is a tool that aims to bring all programming languages to [WebAssembly WASI](https://github.com/WebAssembly/WASI). With `wasienv` you can compile:
+
+* C/C++ projects to Wasm + WASI ([see usage example](https://docs.wasmer.io/ecosystem/wasienv/compile-c-c++-to-wasm-wasi))
+* Swift to Wasm + WASI ([see usage example](https://docs.wasmer.io/ecosystem/wasienv/compile-swift-to-wasm-wasi))
+
+So you can run them anywhere (with any [Standalone WASI WebAssembly runtime](https://wasmer.io), or [in the Browser](https://webassembly.sh)).
 
 > Note: If you aim to use the WebAssembly files in the web directly (using graphics, audio or other tools that are not supported in WASI) then [Emscripten](https://emscripten.org/) is probably a much better choice.
 
@@ -30,7 +46,7 @@ curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 
 > Note: we also ship `wasienv` in a Docker image. You can check [how to use the Wasienv Docker image here](https://github.com/wasienv/wasienv/blob/master/docker/).
 
-## Using wasienv
+## Using wasienv for C projects
 
 If you want to compile a C file to a WebAssembly WASI:
 
@@ -126,6 +142,26 @@ It executes a given WebAssembly file with a standalone WebAssembly runtime.
 
 ```sh
 wasirun myfile.wasm
+```
+
+## Using wasienv for Swift projects
+
+If you want to compile a Swift file to a WebAssembly WASI, you
+will need to first install the Wasienv Swift integration:
+
+```sh
+wasienv install-swift
+```
+
+Once the integration is installed, you can start compiling Swift files
+to WebAssembly!
+
+### `wasiswiftc`
+
+It compiles your Swift files into WebAssembly.
+
+```sh
+wasiswiftc example.swift -o example.wasm
 ```
 
 ## Contributing

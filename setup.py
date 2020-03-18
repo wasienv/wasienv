@@ -16,14 +16,14 @@ def get_long_description():
 
 setup(
     name='wasienv',
-    description="wasienv is a C/C++ Compiler toolchain for WASI",
+    description="wasienv is a toolchain for WASI",
     # long_description=get_long_description(),
     long_description_content_type="text/markdown",
     keywords="webassembly wasi wasienv wasmer",
     author="Syrus Akbary",
     author_email="syrus@wasmer.io",
     url="https://github.com/wasienv-core/wasienv",
-    version='0.4.2',
+    version='0.5.0',
     packages=['wasienv'],
     include_package_data=True,
     license="MIT",
