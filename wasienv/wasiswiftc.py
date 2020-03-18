@@ -17,7 +17,6 @@ def run(args):
     TOOLCHAIN_PATH = os.path.dirname(os.path.dirname(SWIFTWASIBIN))
     
     MODULE_MAP = os.path.join(TOOLCHAIN_PATH, "lib/swift/wasi/wasm32/glibc.modulemap")
-    print(MODULE_MAP)
     # /Users/syrusakbary/.swiftenv/versions/wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/usr/
     WASI_SYSROOT = os.path.join(TOOLCHAIN_PATH, "share", "wasi-sysroot")
     

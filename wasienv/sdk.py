@@ -157,10 +157,13 @@ def install_swiftwasm(version):
         install_swiftenv()
     version = version or "latest"
     version_tag = unalias_name(version, on=SWIFTWASM_TAGS)
-    download_urls = version_tag.get("download_urls", {})
     system = platform.system()
+    swiftwasm_version = SWIFTWASM.get(version_tag)
+    download_urls = swiftwasm_version.get("download_urls", {})
     download_url = download_urls.get(system.lower(), None)
-    run_process([SWIFTENV_BIN, "install", download_url])
+    code = run_process([SWIFTENV_BIN, "install", download_url], check=False)
+    if code:
+        print("There has been an issue installing the latest SDK")
 
 
 def download_and_unpack(sdk_name):
