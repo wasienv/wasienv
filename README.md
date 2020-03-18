@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://docs.wasmer.io/ecosystem/wasienv" target="_blank" rel="noopener noreferrer">
-    <img width="300" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasmer logo">
+    <img width="240" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasmer logo">
   </a>
   
   <p>
@@ -10,8 +10,8 @@
     <a href="https://slack.wasmer.io">
       <img src="https://img.shields.io/static/v1?label=Slack&message=join%20chat&color=brighgreen&style=flat-square" alt="Slack channel">
     </a> 
-    <a href="https://github.com/wasienv/wasienv" target="_blank" rel="noopener noreferrer">
-      <img height="180" src="https://raw.githubusercontent.com/wasienv/wasienv/master/logo.png" alt="Wasienv logo">
+    <a href="https://github.com/wasmerio/wasmer/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/wasienv/wasienv.svg?style=flat-square" alt="License">
     </a>
   </p>
 
