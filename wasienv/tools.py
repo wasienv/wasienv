@@ -58,9 +58,11 @@ def check_program(cmd):
         raise Exception("The program {} was not found. Is the SDK installed?\nYou can install it via: wasienv install-sdk unstable".format(os.path.basename(cmd)))
 
 
-def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
+def python2_subprocess_run(cmd, check=True, input=None, get_output=False, *args, **kwargs):
   if input is not None:
     kwargs['stdin'] = subprocess.PIPE
+  if get_output:
+    kwargs['stdout'] = subprocess.PIPE
 
   proc = subprocess.Popen(cmd, *args, **kwargs)
   stdout, stderr = proc.communicate(input)
@@ -70,14 +72,15 @@ def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
   return result
 
 
-def run_process(cmd, check=True, input=None, *args, **kwargs):
+def run_process(cmd, check=True, input=None, get_output=False, *args, **kwargs):
   logger.debug("wasienv run process: {}".format(" ".join(cmd)))
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   run = getattr(subprocess, "run", python2_subprocess_run)
-  ret = run(cmd, check=check, input=input, *args, **kwargs)
+  ret = run(cmd, check=check, input=input, get_output=get_output, *args, **kwargs)
   logger.debug(debug_text)
-
+  if get_output:
+    return ret.stdout
   return ret.returncode
 
 
@@ -150,6 +153,7 @@ def find_output_arg(args):
 
 def set_environ():
     from .constants import WASI_CC, WASI_CXX, WASI_LD, WASI_AR, WASI_RANLIB, WASI_NM
+    from .sdk import WASI_SWIFTENV_DIR
 
     os.environ["CC"] = WASI_CC
     os.environ["CXX"] = WASI_CXX
@@ -164,6 +168,8 @@ def set_environ():
     os.environ["WASI_AR"] = WASI_AR
     os.environ["WASI_RANLIB"] = WASI_RANLIB
     os.environ["WASI_NM"] = WASI_NM
+
+    os.environ["SWIFTENV_ROOT"] = WASI_SWIFTENV_DIR
 
 
 def execute(f):

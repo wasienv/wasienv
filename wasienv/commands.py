@@ -9,6 +9,7 @@ from .wasimake import run as wasimake_run
 from .wasinm import run as wasinm_run
 from .wasiranlib import run as wasiranlib_run
 from .wasirun import run as wasirun_run
+from .wasiswiftc import run as wasiswiftc_run
 
 
 def wasiar():
@@ -47,3 +48,7 @@ def wasiranlib():
 
 def wasirun():
     return execute(wasirun_run)
+
+
+def wasiswiftc():
+    return execute(wasiswiftc_run)

@@ -25,6 +25,7 @@ __attribute__((weak)) char *realpath(const char *path, char *resolved_path) { re
 ///
 #define PAGESIZE (0x10000)
 #define PAGE_SIZE PAGESIZE
+#define ESHUTDOWN 1
 
 #define ESHUTDOWN 0
 #define GRND_NONBLOCK 0

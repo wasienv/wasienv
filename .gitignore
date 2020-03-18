@@ -4,3 +4,4 @@
 *.pyc
 /.DS_Store
 /wasienv-storage
+.DS_Store

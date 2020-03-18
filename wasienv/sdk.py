@@ -10,7 +10,7 @@ except ImportError:
 import requests
 import tarfile
 
-from .tools import logger
+from .tools import logger, run_process
 
 # Where the python packages live
 PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))
@@ -18,6 +18,9 @@ PACKAGES_DIR    = os.path.dirname(os.path.dirname(__file__))
 # Where the wasienv storage lives
 WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasienv-storage")
 WASI_SDKS_DIR = os.path.join(WASI_STORAGE_DIR, "sdks")
+
+WASI_SWIFT_DIR = os.path.join(WASI_STORAGE_DIR, "swift")
+WASI_SWIFTENV_DIR = os.path.join(WASI_SWIFT_DIR, "swiftenv")
 
 CURRENT_SDK = "8"
 
@@ -57,6 +60,22 @@ SDK_TAGS = {
     "unstable": "8"
 }
 
+SWIFTWASM = {
+    "dev-2020-03-08": {
+        "download_urls": {
+            "darwin": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a-osx.tar.gz",
+            "linux": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a-linux.tar.gz",
+        },
+        "codename": "wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a"
+    }
+}
+
+SWIFTWASM_TAGS = {
+    "latest": "dev-2020-03-08"
+}
+
+SWIFTENV_BIN = os.path.join(WASI_SWIFTENV_DIR, "bin", "swiftenv")
+
 
 class SDKException(Exception):
     pass
@@ -74,9 +93,9 @@ def get_sdk_dir(sdk_name):
     return os.path.join(WASI_SDKS_DIR, sdk_name)
 
 
-def unalias_name(sdk_name):
-    if sdk_name in SDK_TAGS:
-        sdk_name = SDK_TAGS[sdk_name]
+def unalias_name(sdk_name, on=SDK_TAGS):
+    if sdk_name in on:
+        sdk_name = on[sdk_name]
     return sdk_name
 
 
@@ -92,6 +111,56 @@ def is_sdk_installed(sdk_name):
     sdk = get_sdk(sdk_name)
     sdk_dir = get_sdk_dir(sdk_name)
     return os.path.exists(sdk_dir) and os.path.isdir(sdk_dir) and bool(os.listdir(sdk_dir))
+
+
+def dir_full(directory):
+    return os.path.exists(directory) and os.path.isdir(directory) and bool(os.listdir(directory))
+
+
+def dir_create(path):
+    if os.path.exists(path):
+        if os.path.isdir(path):
+            return
+        else:
+            raise Exception("The path {} is a file. Can't create dir".format(path))
+    os.makedirs(path)
+
+
+def dir_delete(path):
+    if not os.path.exists(path):
+        return
+    if os.path.isdir(path):
+        os.rmdir(path)
+    else:
+        os.rm(path)
+
+def is_swiftenv_installed():
+    return dir_full(WASI_SWIFTENV_DIR)
+
+
+def install_swiftenv():
+    try:
+        run_process(["swiftc", "-v"])
+    except:
+        raise Exception("Can't find the swiftc program in your system. Is needed for the WASI Swift installation")
+
+    dir_create(WASI_SWIFT_DIR)
+    print("Installing Swiftenv in {}".format(WASI_SWIFTENV_DIR))
+    dir_delete(WASI_SWIFTENV_DIR)
+    run_process(["git","clone","https://github.com/kylef/swiftenv.git",WASI_SWIFTENV_DIR])
+    print("Swiftenv installed successfully")
+    os.environ["SWIFTENV_ROOT"] = WASI_SWIFTENV_DIR
+
+
+def install_swiftwasm(version):
+    if not is_swiftenv_installed():
+        install_swiftenv()
+    version = version or "latest"
+    version_tag = unalias_name(version, on=SWIFTWASM_TAGS)
+    download_urls = version_tag.get("download_urls", {})
+    system = platform.system()
+    download_url = download_urls.get(system.lower(), None)
+    run_process([SWIFTENV_BIN, "install", download_url])
 
 
 def download_and_unpack(sdk_name):
