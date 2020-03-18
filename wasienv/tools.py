@@ -58,11 +58,9 @@ def check_program(cmd):
         raise Exception("The program {} was not found. Is the SDK installed?\nYou can install it via: wasienv install-sdk unstable".format(os.path.basename(cmd)))
 
 
-def python2_subprocess_run(cmd, check=True, input=None, get_output=False, *args, **kwargs):
+def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
   if input is not None:
     kwargs['stdin'] = subprocess.PIPE
-  if get_output:
-    kwargs['stdout'] = subprocess.PIPE
 
   proc = subprocess.Popen(cmd, *args, **kwargs)
   stdout, stderr = proc.communicate(input)
@@ -77,7 +75,9 @@ def run_process(cmd, check=True, input=None, get_output=False, *args, **kwargs):
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   run = getattr(subprocess, "run", python2_subprocess_run)
-  ret = run(cmd, check=check, input=input, get_output=get_output, *args, **kwargs)
+  if get_output:
+    kwargs['stdout'] = subprocess.PIPE
+  ret = run(cmd, check=check, input=input, *args, **kwargs)
   logger.debug(debug_text)
   if get_output:
     return ret.stdout
