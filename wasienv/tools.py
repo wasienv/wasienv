@@ -11,6 +11,8 @@ import stat
 
 logger = logging.getLogger('wasienv')
 
+DEBUG = False
+
 # Part of this implementation is taken/inspired from Emscripten tools/shared.py
 # https://github.com/emscripten-core/emscripten/blob/2431347a32dcce89ab3e26e86de445cada58745c/tools/shared.py#L140-L191
 # LICENSE below:
@@ -54,6 +56,7 @@ class Py2CompletedProcess:
 
 
 def check_program(cmd):
+    print_debug("Checking program {}".format(cmd))
     if not os.path.exists(cmd):
         raise Exception("The program {} was not found. Is the SDK installed?\nYou can install it via: wasienv install-sdk unstable".format(os.path.basename(cmd)))
 
@@ -71,16 +74,17 @@ def python2_subprocess_run(cmd, check=True, input=None, *args, **kwargs):
 
 
 def run_process(cmd, check=True, input=None, get_output=False, *args, **kwargs):
-  logger.debug("wasienv run process: {}".format(" ".join(cmd)))
+  print_debug("wasienv run process: {}".format(" ".join(cmd)))
   debug_text = '%sexecuted %s' % ('successfully ' if check else '', ' '.join(cmd))
 
   run = getattr(subprocess, "run", python2_subprocess_run)
   if get_output:
     kwargs['stdout'] = subprocess.PIPE
   ret = run(cmd, check=check, input=input, *args, **kwargs)
-  logger.debug(debug_text)
+  print_debug(debug_text)
   if get_output:
-    return ret.stdout
+      print_debug("Process returned: {}".format(ret.stdout))
+      return ret.stdout
   return ret.returncode
 
 
@@ -98,10 +102,19 @@ def is_wasm(fpath):
     return False
 
 
+def print_debug(what):
+    if not DEBUG:
+        return
+    print(what)
+
+
 def try_to_wrap_executable(exe_name):
+    print_debug("Trying to wrap executable {}".format(exe_name))
     target_path = os.path.join(os.getcwd(), exe_name)
     if not is_exe(target_path) or exe_name.endswith(".wasm") or exe_name.endswith(".dylib") or exe_name.endswith(".dll") or exe_name.endswith(".so"):
+        print_debug("Executable is not really executable. Skipping")
         return
+
     # It's a cmake file, we skip
     # CMake does some checks like the size of a struct generating
     # a file with certain contents on it and then doing a check using
@@ -111,6 +124,7 @@ def try_to_wrap_executable(exe_name):
 
     st = os.stat(target_path)
     if not is_wasm(target_path):
+        print_debug("Executable is not a Wasm file")
         return
 
     new_target_path = "{}.wasm".format(target_path)
@@ -153,7 +167,7 @@ def find_output_arg(args):
 
 def set_environ():
     from .constants import WASI_CC, WASI_CXX, WASI_LD, WASI_AR, WASI_RANLIB, WASI_NM
-    from .sdk import WASI_SWIFTENV_DIR
+    from .sdk import WASI_SWIFT_ENV_DIR
 
     os.environ["CC"] = WASI_CC
     os.environ["CXX"] = WASI_CXX
@@ -169,13 +183,17 @@ def set_environ():
     os.environ["WASI_RANLIB"] = WASI_RANLIB
     os.environ["WASI_NM"] = WASI_NM
 
-    os.environ["SWIFTENV_ROOT"] = WASI_SWIFTENV_DIR
+    os.environ["SWIFTENV_ROOT"] = WASI_SWIFT_ENV_DIR
 
 
 def execute(f):
+    global DEBUG
+    args = sys.argv[:]
     try:
-        logging.basicConfig(level=logging.INFO)
-        sys.exit(f(sys.argv))
+        if "--debug" in args:
+            args = [arg for arg in args if arg != "debug"]
+            DEBUG = True
+        sys.exit(f(args))
     except KeyboardInterrupt:
         logger.warning("KeyboardInterrupt")
         sys.exit(1)

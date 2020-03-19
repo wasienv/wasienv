@@ -20,6 +20,9 @@ WASI_STORAGE_DIR    = os.path.join(PACKAGES_DIR, "wasienv-storage")
 WASI_SDKS_DIR = os.path.join(WASI_STORAGE_DIR, "sdks")
 
 WASI_SWIFT_DIR = os.path.join(WASI_STORAGE_DIR, "swift")
+# THe dir where the specific environment for swiftenv lives
+WASI_SWIFT_ENV_DIR = os.path.join(WASI_SWIFT_DIR, "env")
+# The dir where swiftenv lives
 WASI_SWIFTENV_DIR = os.path.join(WASI_SWIFT_DIR, "swiftenv")
 
 CURRENT_SDK = "8"
@@ -61,17 +64,17 @@ SDK_TAGS = {
 }
 
 SWIFTWASM = {
-    "dev-2020-03-08": {
+    "dev-2020-03-18": {
         "download_urls": {
-            "darwin": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a-osx.tar.gz",
-            "linux": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a-linux.tar.gz",
+            "darwin": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-18-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-18-a-osx.tar.gz",
+            "linux": "https://github.com/swiftwasm/swift/releases/download/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a/swift-wasm-DEVELOPMENT-SNAPSHOT-2020-03-18-a-linux.tar.gz",
         },
-        "codename": "wasm-DEVELOPMENT-SNAPSHOT-2020-03-08-a"
+        "codename": "wasm-DEVELOPMENT-SNAPSHOT-2020-03-18-a"
     }
 }
 
 SWIFTWASM_TAGS = {
-    "latest": "dev-2020-03-08"
+    "latest": "dev-2020-03-18"
 }
 
 SWIFTENV_BIN = os.path.join(WASI_SWIFTENV_DIR, "bin", "swiftenv")
@@ -149,7 +152,7 @@ def install_swiftenv():
     dir_delete(WASI_SWIFTENV_DIR)
     run_process(["git","clone","https://github.com/kylef/swiftenv.git",WASI_SWIFTENV_DIR])
     print("Swiftenv installed successfully")
-    os.environ["SWIFTENV_ROOT"] = WASI_SWIFTENV_DIR
+    os.environ["SWIFTENV_ROOT"] = WASI_SWIFT_ENV_DIR
 
 
 def install_swiftwasm(version):
@@ -161,6 +164,7 @@ def install_swiftwasm(version):
     swiftwasm_version = SWIFTWASM.get(version_tag)
     download_urls = swiftwasm_version.get("download_urls", {})
     download_url = download_urls.get(system.lower(), None)
+    os.environ["SWIFTENV_ROOT"] = WASI_SWIFT_ENV_DIR
     code = run_process([SWIFTENV_BIN, "install", download_url], check=False)
     if code:
         print("There has been an issue installing the latest SDK")
