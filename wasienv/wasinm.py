@@ -5,7 +5,7 @@ from __future__ import print_function
 import sys
 
 from .tools import logger, run_process, execute, check_program
-from .constants import NM
+from .constants import NM, RANLIB
 
 
 
