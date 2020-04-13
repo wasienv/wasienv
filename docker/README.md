@@ -15,7 +15,7 @@ Each tag was build from single [Dockerfile](https://github.com/wasienv/wasienv/b
 
 |packages|version|
 |---|---|
-|`cmake`|**3.14.3**|
+|`cmake`|**3.17.1**|
 
 ### System installed:
 
