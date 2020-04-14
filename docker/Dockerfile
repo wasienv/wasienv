@@ -7,9 +7,9 @@ RUN apt-get install -y --no-install-recommends python python-pip python-setuptoo
 RUN echo "## Done"
 
 RUN echo "## Installing CMake"
-RUN curl https://cmake.org/files/v3.6/cmake-3.6.3-Linux-x86_64.sh --output cmake-3.6.3-Linux-x86_64.sh \
+RUN curl https://cmake.org/files/v3.17/cmake-3.17.1-Linux-x86_64.sh --output cmake-3.17.1-Linux-x86_64.sh \
     &&  mkdir /opt/cmake \
-    &&  printf "y\nn\n" | sh cmake-3.6.3-Linux-x86_64.sh --prefix=/opt/cmake > /dev/null \
+    &&  printf "y\nn\n" | sh cmake-3.17.1-Linux-x86_64.sh --prefix=/opt/cmake > /dev/null \
     &&  ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake
 RUN echo "## Done"
 
