@@ -25,7 +25,7 @@ WASI_SWIFT_ENV_DIR = os.path.join(WASI_SWIFT_DIR, "env")
 # The dir where swiftenv lives
 WASI_SWIFTENV_DIR = os.path.join(WASI_SWIFT_DIR, "swiftenv")
 
-CURRENT_SDK = "8"
+CURRENT_SDK = "10"
 
 SDKS = {
     "5": {
@@ -56,11 +56,18 @@ SDKS = {
         },
         "sysroot": "wasi-sdk-8.0"
     },
+    "10": {
+        "download_urls": {
+            "darwin": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-macos.tar.gz',
+            "linux": 'https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-10/wasi-sdk-10.0-linux.tar.gz',
+        },
+        "sysroot": "wasi-sdk-10.0"
+    },
 }
 
 SDK_TAGS = {
-    "latest": "8",
-    "unstable": "8"
+    "latest": "10",
+    "unstable": "10"
 }
 
 SWIFTWASM = {
