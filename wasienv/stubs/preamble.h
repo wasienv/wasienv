@@ -25,7 +25,6 @@ __attribute__((weak)) char *realpath(const char *path, char *resolved_path) { re
 ///
 #define PAGESIZE (0x10000)
 #define PAGE_SIZE PAGESIZE
-#define ESHUTDOWN 1
 
 #define ESHUTDOWN 0
 #define GRND_NONBLOCK 0
@@ -122,6 +121,7 @@ __attribute__((weak)) int sigaction(int signum, const struct sigaction *act,
 
 __attribute__((weak)) void *dlopen(const char *filename, int flag) {
     printf("[WASIENV] dlopen\n");fflush(stdout);
+    return NULL;
 }
 
 __attribute__((weak)) char *dlerror(void) {
@@ -131,9 +131,11 @@ __attribute__((weak)) char *dlerror(void) {
 
 __attribute__((weak)) void *dlsym(void *handle, const char *symbol) {
     printf("[WASIENV] dlsym\n");fflush(stdout);
+    return NULL;
 }
 
 __attribute__((weak)) int dlclose(void *handle) {
     printf("[WASIENV] dlclose\n");fflush(stdout);
+    return 0;
 }
 
