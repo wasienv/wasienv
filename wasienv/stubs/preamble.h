@@ -25,7 +25,6 @@ __attribute__((weak)) char *realpath(const char *path, char *resolved_path) { re
 ///
 #define PAGESIZE (0x10000)
 #define PAGE_SIZE PAGESIZE
-#define ESHUTDOWN 1
 
 #define ESHUTDOWN 0
 #define GRND_NONBLOCK 0
@@ -58,7 +57,7 @@ __attribute__((weak)) ssize_t getrandom(void * buffer, size_t len, unsigned flag
 }
 
 
-__attribute__((weak)) char *getcwd(char *buf, size_t size) { return "";}
+__attribute__((weak)) const char *getcwd(char *buf, size_t size) { return "";}
 
 __attribute__((weak))  int clock_settime(clockid_t clk_id, const struct timespec *tp) { return 0;}
 __attribute__((weak)) int chdir(const char *path) { return 0;
@@ -113,8 +112,8 @@ __attribute__((weak)) int chmod(const char *pathname, mode_t mode) { return 0; }
 
 __attribute__((weak)) int signal(int signum, int handler) { return 0; }
 
-__attribute__((weak)) int sigaction(int signum, const struct sigaction *act,
-                     struct sigaction *oldact) { return 0; }
+__attribute__((weak)) int sigaction(int signum, const /* struct sigaction */ void *act,
+                     /* struct sigaction */ void *oldact) { return 0; }
 
 
 
@@ -122,18 +121,21 @@ __attribute__((weak)) int sigaction(int signum, const struct sigaction *act,
 
 __attribute__((weak)) void *dlopen(const char *filename, int flag) {
     printf("[WASIENV] dlopen\n");fflush(stdout);
+    return NULL;
 }
 
-__attribute__((weak)) char *dlerror(void) {
+__attribute__((weak)) const char *dlerror(void) {
     printf("[WASIENV] dlerror\n");fflush(stdout);
     return "";
 }
 
 __attribute__((weak)) void *dlsym(void *handle, const char *symbol) {
     printf("[WASIENV] dlsym\n");fflush(stdout);
+    return NULL;
 }
 
 __attribute__((weak)) int dlclose(void *handle) {
     printf("[WASIENV] dlclose\n");fflush(stdout);
+    return 0;
 }
 
