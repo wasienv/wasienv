@@ -113,10 +113,17 @@ echo "${green}${bold}> Installing wasienv${reset}"
 
 # Create wasienv directory
 mkdir -p $INSTALL_DIRECTORY/bin
-# Uninstall in case it exists
-pip uninstall wasienv -y || true
-# Install wasienv in the ~/.wasienv/bin directory
-pip install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
+if [ -x "$(command -v pip3)" ]; then
+  # Uninstall in case it exists
+  pip3 uninstall wasienv -y || true
+  # Install wasienv in the ~/.wasienv/bin directory
+  pip3 install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
+else
+  # Uninstall in case it exists
+  pip uninstall wasienv -y || true
+  # Install wasienv in the ~/.wasienv/bin directory
+  pip install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
+fi
 
 wasienv_link
 
