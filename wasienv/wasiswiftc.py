@@ -15,10 +15,9 @@ def run(args):
     os.environ["SWIFTENV_ROOT"] = WASI_SWIFT_ENV_DIR
     SWIFTWASIBIN = run_process([SWIFTENV_BIN, "which", "swiftc"], get_output=True).strip()
     TOOLCHAIN_PATH = os.path.dirname(os.path.dirname(SWIFTWASIBIN))
-    MODULE_MAP = os.path.join(TOOLCHAIN_PATH, "lib/swift/wasi/wasm32/glibc.modulemap")
-    WASI_SYSROOT = os.path.join(TOOLCHAIN_PATH, "share", "wasi-sysroot")
-
-    proc_args = [SWIFTWASIBIN, "-target", "wasm32-unknown-wasi", "-sdk", WASI_SYSROOT]+args[1:]
+    MODULE_MAP = os.path.join(TOOLCHAIN_PATH.decode('utf-8'), "lib/swift/wasi/wasm32/glibc.modulemap")
+    WASI_SYSROOT = os.path.join(TOOLCHAIN_PATH.decode('utf-8'), "share", "wasi-sysroot")
+    proc_args = [SWIFTWASIBIN.decode('utf-8'), "-target", "wasm32-unknown-wasi", "-sdk", WASI_SYSROOT]+args[1:]
     return_code = run_process(proc_args, check=False)
     target, outargs = find_output_arg(args)
     if target:
