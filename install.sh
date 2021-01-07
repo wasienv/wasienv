@@ -117,12 +117,14 @@ if [ -x "$(command -v pip3)" ]; then
   # Uninstall in case it exists
   pip3 uninstall wasienv -y || true
   # Install wasienv in the ~/.wasienv/bin directory
-  pip3 install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
+  pip3 install wasienv --prefix=$INSTALL_DIRECTORY --upgrade
+  pip3 install wasienv --user
 else
   # Uninstall in case it exists
   pip uninstall wasienv -y || true
   # Install wasienv in the ~/.wasienv/bin directory
-  pip install wasienv --install-option="--install-scripts=$INSTALL_DIRECTORY/bin" --upgrade --user
+  pip install wasienv --prefix=$INSTALL_DIRECTORY --upgrade
+  pip install wasienv --user
 fi
 
 wasienv_link
