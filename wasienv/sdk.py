@@ -25,7 +25,7 @@ WASI_SWIFT_ENV_DIR = os.path.join(WASI_SWIFT_DIR, "env")
 # The dir where swiftenv lives
 WASI_SWIFTENV_DIR = os.path.join(WASI_SWIFT_DIR, "swiftenv")
 
-CURRENT_SDK = "10"
+CURRENT_SDK = "12"
 
 SDKS = {
     "5": {
@@ -81,7 +81,7 @@ SDKS = {
 
 SDK_TAGS = {
     "latest": "12",
-    "unstable": "12"
+    "unstable": "10"
 }
 
 SWIFTWASM = {
