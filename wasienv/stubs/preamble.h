@@ -57,7 +57,7 @@ __attribute__((weak)) ssize_t getrandom(void * buffer, size_t len, unsigned flag
 }
 
 
-__attribute__((weak)) const char *getcwd(char *buf, size_t size) { return "";}
+__attribute__((weak)) char *getcwd(char *buf, size_t size) { return "";}
 
 __attribute__((weak))  int clock_settime(clockid_t clk_id, const struct timespec *tp) { return 0;}
 __attribute__((weak)) int chdir(const char *path) { return 0;
