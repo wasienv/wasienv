@@ -110,7 +110,7 @@ __attribute__((weak)) gid_t getegid(void) { return 0; }
 
 __attribute__((weak)) int chmod(const char *pathname, mode_t mode) { return 0; }
 
-__attribute__((weak)) int signal(int signum, int handler) { return 0; }
+__attribute__((weak)) void (*signal(int sig, void (*func)(int)))(int) { return func; }
 
 __attribute__((weak)) int sigaction(int signum, const /* struct sigaction */ void *act,
                      /* struct sigaction */ void *oldact) { return 0; }
