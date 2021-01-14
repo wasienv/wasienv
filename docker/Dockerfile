@@ -1,4 +1,4 @@
-FROM debian:stretch AS stage_build
+FROM debian:buster AS stage_build
 
 
 RUN echo "## Update and install packages"
