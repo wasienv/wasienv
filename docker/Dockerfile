@@ -17,6 +17,10 @@ RUN echo "## Installing wasienv"
 RUN curl https://raw.githubusercontent.com/wasienv/wasienv/master/install.sh | sh
 
 ENV WASIENV_DIR="/root/.wasienv"
-ENV PATH="$WASIENV_DIR/bin:$PATH"
+
+ENV WASMER_DIR="/root/.wasmer"
+ENV WASMER_CACHE_DIR="$WASMER_DIR/cache"
+
+ENV PATH="$WASMER_DIR/bin:$WASIENV_DIR/bin:$PATH:$WASMER_DIR/globals/wapm_packages/.bin"
 
 RUN echo "## Done"
