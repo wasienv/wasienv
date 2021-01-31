@@ -57,7 +57,7 @@ __attribute__((weak)) ssize_t getrandom(void * buffer, size_t len, unsigned flag
 }
 
 
-__attribute__((weak)) const char *getcwd(char *buf, size_t size) { return "";}
+__attribute__((weak)) char *getcwd(char *buf, size_t size) { return "";}
 
 __attribute__((weak))  int clock_settime(clockid_t clk_id, const struct timespec *tp) { return 0;}
 __attribute__((weak)) int chdir(const char *path) { return 0;
@@ -112,7 +112,7 @@ __attribute__((weak)) int chmod(const char *pathname, mode_t mode) { return 0; }
 
 __attribute__((weak)) unsigned alarm(unsigned seconds) { return 0; }
 
-__attribute__((weak)) int signal(int signum, int handler) { return 0; }
+__attribute__((weak)) void (*signal(int sig, void (*func)(int)))(int) { return func; }
 
 __attribute__((weak)) int sigaction(int signum, const /* struct sigaction */ void *act,
                      /* struct sigaction */ void *oldact) { return 0; }
