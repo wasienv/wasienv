@@ -16,6 +16,7 @@ red="\033[31m"
 cyan="\033[36m"
 white="\033[37m"
 dim="\033[2m"
+SHELLTYPE="$(basename "/$SHELL")"
 
 wasienv_detect_profile() {
   if [ -n "${PROFILE}" ] && [ -f "${PROFILE}" ]; then
@@ -25,8 +26,6 @@ wasienv_detect_profile() {
 
   local DETECTED_PROFILE
   DETECTED_PROFILE=''
-  local SHELLTYPE
-  SHELLTYPE="$(basename "/$SHELL")"
 
   if [ "$SHELLTYPE" = "bash" ]; then
     if [ -f "$HOME/.bashrc" ]; then
@@ -83,7 +82,8 @@ wasienv_link() {
       command printf "$LOAD_STR" >> "$WASIENV_PROFILE"
       # fi
     fi
-    printf "\033[1A${green}${bold}> Adding wasienv to bash profile... ✓${reset}\n"
+    printf "\033[1A${green}${bold}> Adding wasienv to ${SHELLTYPE} profile, please run following command to enable wasienv in this shell session... ✓${reset}\n"
+    command printf "source ${WASIENV_PROFILE}"
     version=`$INSTALL_DIRECTORY/bin/wasienv --version` || (
       printf "$red> wasienv was installed, but doesn't seem to be working :($reset\n"
       exit 1;
