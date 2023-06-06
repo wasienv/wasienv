@@ -24,9 +24,11 @@ def run(args):
 
     has_sysroot = any([arg.startswith("--sysroot") for arg in args])
     has_target = any([arg.startswith("--target") for arg in args])
+    has_preprocess = any([arg.startswith("-E") for arg in args])
     
     args.append('-isystem{}'.format(STUBS_SYSTEM_LIB))
-    args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
+    if not has_preprocess:
+        args.append('-include{}'.format(STUBS_SYSTEM_PREAMBLE))
     args.append('-D_WASI_EMULATED_MMAN')
 
     if not has_sysroot:
